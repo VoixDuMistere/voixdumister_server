@@ -1,0 +1,14 @@
+
+{
+  "name": "voixdumystere-server",
+  "version": "1.0.0",
+  "description": "Serveur pour générer des voix avec UseTalk",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "puppeteer": "^21.3.8"
+  }
+}

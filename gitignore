@@ -1,0 +1,17 @@
+# Ne pas suivre les modules installés
+node_modules/
+
+# Ne pas suivre les fichiers de configuration sensibles
+.env
+
+# Ne pas suivre les logs
+logs
+*.log
+npm-debug.log*
+
+# Ne pas suivre les fichiers temporaires
+.DS_Store
+*.swp
+
+# Dossier de cache
+.cache/
