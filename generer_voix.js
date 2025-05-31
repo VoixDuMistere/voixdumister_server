@@ -1,28 +1,15 @@
-
-const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 
+/**
+ * Simule la génération de voix en créant un fichier audio factice.
+ * @param {string} texte - Le texte à convertir en voix.
+ * @returns {Promise<string>} - Le chemin du fichier audio généré.
+ */
 async function genererVoix(texte) {
-  const browser = await puppeteer.launch({ headless: "new" });
-  const page = await browser.newPage();
-
-  await page.goto('https://www.usetalk.ai', { waitUntil: 'networkidle2' });
-
-  await page.waitForSelector('textarea');
-  await page.type('textarea', texte, { delay: 10 });
-
-  const boutons = await page.$$('button');
-  await boutons[1].click();
-
-  await page.waitForSelector('a[download]', { timeout: 60000 });
-  const audioUrl = await page.$eval('a[download]', a => a.href);
-
-  const audioBuffer = await page.goto(audioUrl).then(res => res.buffer());
-  const chemin = path.resolve(__dirname, 'voix.mp3');
-  fs.writeFileSync(chemin, audioBuffer);
-
-  await browser.close();
+  const chemin = path.join(__dirname, 'test.mp3');
+  const contenuFictif = Buffer.from('FAKE AUDIO', 'utf-8');
+  fs.writeFileSync(chemin, contenuFictif);
   return chemin;
 }
 
