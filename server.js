@@ -1,11 +1,14 @@
-
 const express = require('express');
 const genererVoix = require('./generer_voix');
 const path = require('path');
 const app = express();
 
 app.use(express.json());
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+
+app.get('/', (req, res) => {
+  res.send("Serveur Voix du Mystère opérationnel !");
+});
 
 app.post('/generer-voix', async (req, res) => {
   const { texte } = req.body;
@@ -21,5 +24,5 @@ app.post('/generer-voix', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Serveur voix lancé sur http://localhost:${PORT}`);
+  console.log(`Serveur voix lancé sur le port ${PORT}`);
 });
